@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import fs from 'node:fs';
+function ui(){
+ class Element{constructor(){this.children=[];this.value='';this.hidden=false;this.disabled=false;this.listeners={};this.attributes={};}append(...v){this.children.push(...v)}replaceChildren(...v){this.children=v}addEventListener(n,f){this.listeners[n]=f}setAttribute(k,v){this.attributes[k]=v}showModal(){this.open=true}close(){this.open=false}}
+ const elements={},pending=[];let changed;
+ const context={document:{getElementById:id=>elements[id]??=new Element(),createElement:()=>new Element()},auth:{currentUser:{getIdToken:async()=> 'test'}},onAuthStateChanged:(a,f)=>changed=f,signOut:async()=>{},location:{replace:()=>{}},fetch:()=>new Promise(resolve=>pending.push(resolve)),console};
+ vm.createContext(context);vm.runInContext(fs.readFileSync('public/js/admin.js','utf8').replace(/^import[^\n]+\n/,''),context);
+ return{elements,pending,context,changed:()=>changed,run:s=>vm.runInContext(s,context),flush:()=>new Promise(r=>setImmediate(r))};
+}
+test('tab switch clears old cards immediately even when next request fails',async()=>{const u=ui();u.context.document.getElementById('list').append({textContent:'old user'});u.elements.leavesTab.onclick();assert.equal(u.elements.list.children.length,0);await u.flush();u.pending.shift()({ok:false,json:async()=>({error:'offline'})});await u.flush();assert.equal(u.elements.list.children.length,0);assert.equal(u.elements.message.textContent,'offline');});
+test('sign out invalidates a pending authorization response',async()=>{const u=ui();const first=u.changed()(u.context.auth.currentUser);await u.flush();await u.changed()(null);u.pending.shift()({ok:true,json:async()=>({admin:true})});await first;assert.equal(u.elements.workspace.hidden,true);assert.equal(u.pending.length,0);});
+test('profile editor and rejection editor have appropriate native validation',()=>{const u=ui();u.run("edit({id:'s',role:'student',fullname:'Test',grade:'ม.2'},'profile')");assert.equal(u.elements.fullname.required,true);assert.equal(u.elements.note.disabled,true);u.run("edit({id:'l',studentName:'Test',status:'pending'},'rejected')");assert.equal(u.elements.fullname.disabled,true);assert.equal(u.elements.note.required,true);assert.equal(u.elements.note.minLength,3);});
+test('leaves are rendered as text without interpreting HTML from users',()=>{const u=ui();u.run("kind='leaves';items=[{id:'l',studentName:'<script>bad()</script>',status:'pending'}];render()");assert.equal(u.elements.list.children[0].children[0].textContent,'<script>bad()</script>');});
+

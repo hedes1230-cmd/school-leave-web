@@ -71,3 +71,14 @@ test('audit failure blocks mutation',async()=>{
  const x=setupMutation({auditFail:true});assert.equal((await x.handler(x.request,x.env)).status,503);
  assert.ok(!x.calls.some(c=>c.options.method==='PUT'));
 });
+test('profile endpoint saves name and grade to user and directory without copying private fields',async()=>{
+ const writes=[];const db={prepare:()=>({run:async()=>{},bind:()=>({run:async()=>{}})})};
+ const handler=createAdminHandler({clock:()=>1100000,authorize:async()=>({uid:'adminuid',claims}),accessToken:async()=> 'test',fetcher:async(url,o)=>{if(url.includes('accounts:lookup'))return Response.json({users:[account]});if(o.method==='PATCH'){writes.push(JSON.parse(o.body));return Response.json({});}return Response.json({role:'student',fullname:'Old',email:'private@test.invalid',grade:'ม.1'});}});
+ const response=await handler(req('users/update',{method:'POST',headers:{Authorization:'Bearer test',Origin:'https://school-leave.pages.dev','Content-Type':'application/json'},body:JSON.stringify({id:'student1',fullname:'Updated',grade:'ม.6'})}),{ACCOUNT_DB:db,FIREBASE_DB_URL:'https://school-leave-system-a3e15-default-rtdb.asia-southeast1.firebasedatabase.app'});
+ assert.equal(response.status,200);assert.deepEqual(writes,[{'users/student1/fullname':'Updated','directory/student1/fullname':'Updated','users/student1/grade':'ม.6','directory/student1/grade':'ม.6'}]);
+});
+test('user listing excludes private data and returns the next unconsumed cursor',async()=>{
+ const records=Object.fromEntries(Array.from({length:51},(_,i)=>['user'+String(i).padStart(3,'0'),{role:'student',fullname:'Test',email:'private@test.invalid',password:'never-return'}]));
+ const handler=createAdminHandler({authorize:async()=>({uid:'adminuid',claims}),accessToken:async()=> 'test',fetcher:async url=>Response.json(url.includes('accounts:lookup')?{users:[account]}:records)});
+ const r=await handler(req('users'),{ACCOUNT_DB:{prepare:()=>({run:async()=>{}})},FIREBASE_DB_URL:'https://school-leave-system-a3e15-default-rtdb.asia-southeast1.firebasedatabase.app'});const data=await r.json();assert.equal(r.status,200);assert.equal(data.items.length,50);assert.equal(data.next,'user050');assert.ok(data.items.every(x=>!('email'in x)&&!('password'in x)));
+});
