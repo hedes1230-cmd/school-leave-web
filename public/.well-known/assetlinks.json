@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.pages.school_leave.twa",
+      "sha256_cert_fingerprints": [
+        "D8:60:3A:BE:B1:FB:CC:7D:03:9E:E4:BA:3B:41:2D:E0:78:5C:A0:72:FB:E4:18:A2:AF:2D:17:28:61:8A:18:8F"
+      ]
+    }
+  }
+]

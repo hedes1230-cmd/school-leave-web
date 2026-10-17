@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+<defs><linearGradient id="bg" x1="4" y1="3" x2="59" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#367b65"/><stop offset="1" stop-color="#153f33"/></linearGradient><linearGradient id="sheet" x1="18" y1="18" x2="47" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#fffef1"/><stop offset="1" stop-color="#e3edc9"/></linearGradient></defs>
+<rect x="1" y="1" width="62" height="62" rx="19" fill="url(#bg)"/>
+<rect x="2" y="2" width="60" height="60" rx="18" stroke="#e5f6d7" stroke-opacity=".18"/>
+<rect x="13" y="16" width="38" height="37" rx="9" fill="#0c3025" opacity=".2"/>
+<rect x="13" y="14" width="38" height="37" rx="9" fill="url(#sheet)"/>
+<path d="M13 24v-1a9 9 0 0 1 9-9h20a9 9 0 0 1 9 9v1H13Z" fill="#b7d69b"/>
+<path d="M23 11v9M41 11v9" stroke="#fdfde9" stroke-width="4" stroke-linecap="round"/>
+<path d="M21 33h5M21 40h5" stroke="#8baa78" stroke-width="3" stroke-linecap="round"/>
+<path d="m31 36 6 6 12-14" stroke="#205842" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="49" cy="49" r="8" fill="#f5c48e"/>
+<path d="M49 45v4l3 2" stroke="#234e39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

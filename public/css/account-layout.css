@@ -1,0 +1,36 @@
+/* Account forms: one consistent column, including the recovery handoff. */
+.signup-page .auth-wrap{grid-template-columns:minmax(300px,.9fr) minmax(0,1.1fr);max-width:1440px;margin-inline:auto;gap:clamp(24px,4vw,64px)}
+.signup-page .auth-card.wide{width:100%;max-width:560px;padding:36px 28px 24px;align-self:center}
+.signup-page #signupForm{display:block;width:100%}
+.signup-page #signupForm[hidden]{display:none}
+.signup-page #accountFields{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;width:100%}
+.signup-page #accountFields .field{width:100%;min-width:0;margin:0}
+.signup-page #accountFields .hint{display:block;margin-top:6px;line-height:1.6;font-size:.8rem}
+.signup-page #accountChallenge{min-width:0;width:100%;overflow:hidden}
+.signup-page #accountChallenge>div{max-width:100%}
+.signup-page #submitBtn,.signup-page #googleLoginBtn{width:100%;min-height:52px}
+.signup-page #recoveryPanel{padding:24px;border:1px solid #cfdbca;border-radius:20px;background:#f4f7ee;margin:0;color:var(--text)}
+.signup-page #recoveryPanel h2{margin:0 0 10px;font-size:1.3rem}
+.signup-page #recoveryPanel p{margin:0 0 18px;line-height:1.7;font-size:.9rem}
+.signup-page #recoveryCodes{padding:16px;margin:0 0 16px;border-radius:12px;background:#fff;border:1px solid #dce5d5;font-size:clamp(.9rem,2.7vw,1rem);line-height:1.9;overflow-wrap:anywhere;max-width:100%}
+.signup-page #recoveryPanel>label{display:flex;align-items:center;gap:12px;min-height:48px;margin:0 0 14px;cursor:pointer;font-size:.95rem}
+.signup-page #savedCodes{appearance:auto;flex:0 0 22px;width:22px;height:22px;min-height:22px;margin:0;padding:0;accent-color:#205d49;border-radius:4px}
+.signup-page .auth-card:has(#recoveryPanel:not([hidden]))>.auth-divider,
+.signup-page .auth-card:has(#recoveryPanel:not([hidden]))>#googleLoginBtn,
+.signup-page .auth-card:has(#recoveryPanel:not([hidden]))>.auth-links{display:none}
+@media(max-width:900px){
+ .signup-page .auth-wrap{display:block;max-width:640px;padding:12px}
+ .signup-page .auth-card.wide{max-width:560px;padding:28px 20px 20px}
+ .signup-page .auth-story{position:relative;top:auto;height:auto;min-height:0}
+ .signup-page .story-main{display:none}
+}
+@media(max-width:560px){
+ .signup-page .auth-wrap{padding:12px max(12px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+ .signup-page .auth-story{padding:16px 18px;border-radius:20px}
+ .signup-page .auth-card.wide{padding:26px 4px 12px}
+ .signup-page #accountFields{gap:18px}
+ .signup-page .auth-card h1{font-size:1.65rem;margin-bottom:24px}
+ .signup-page .role-pick label{min-height:56px;font-size:.95rem}
+ .signup-page #recoveryPanel{padding:18px 14px;border-radius:16px}
+ .signup-page #recoveryCodes{padding:12px}
+}

@@ -1,0 +1,69 @@
+/* Shared sizing for public pages, account flows and both dashboards. */
+.auth-wrap{max-width:1440px;margin-inline:auto;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.auth-card,.auth-card.wide{width:100%;min-width:0}
+.auth-card input:not([type=checkbox]):not([type=radio]),.auth-card select{max-width:100%}
+.auth-card input[type=checkbox]{width:22px;height:22px;min-height:22px;padding:0;accent-color:#205d49}
+.auth-card .row>.field{min-width:0}
+.app .main{width:auto;min-width:0}
+.content-section,.leave-workspace,.leave-workspace>*,.panel,.filters,.inbox-toolbar{min-width:0}
+.profile-name,.profile-meta,.item-title,.item-sub,.leave-reason,.teacher-note,.notice,.utility-page p{overflow-wrap:anywhere}
+.search-row .input-icon,.filters .input-icon{min-width:0}
+.section-head,.leave-head,.leave-foot,.item-actions{flex-wrap:wrap;gap:12px}
+.table-wrap{width:100%;max-width:100%;overflow-x:auto}
+.table-wrap:focus-visible{outline:2px solid var(--primary,#205d49);outline-offset:3px}
+.table-wrap th,.table-wrap td{overflow-wrap:anywhere}
+.modal{width:min(560px,100%);max-width:100%;max-height:calc(100dvh - 32px);overflow:auto}
+.modal img,.evidence-preview img{max-width:100%;height:auto;object-fit:contain}
+.utility-page>main{width:100%;max-width:760px;box-sizing:border-box}
+.btn{white-space:normal;overflow-wrap:anywhere}
+@media(min-width:901px){
+ .app .main{max-width:1440px;padding-inline:clamp(24px,3vw,48px)}
+ .filters{flex-wrap:wrap;gap:12px}
+}
+@media(max-width:1100px){.leave-workspace{grid-template-columns:minmax(0,1fr)}.leave-summary{position:static}}
+@media(max-width:900px){
+ .auth-wrap{display:block;max-width:640px;padding:12px}
+ .auth-story{position:relative;min-height:0;height:auto;padding:18px 22px}
+ .auth-story .story-main,.auth-story .story-footer{display:none}
+ .auth-card,.auth-card.wide{max-width:560px;padding:28px 20px 20px}
+ .app .main{margin-left:0;width:100%;padding-inline:20px}
+ .filters{display:flex;flex-wrap:wrap;gap:12px}
+ .filters>*{min-width:0;max-width:100%}
+ .inbox-toolbar{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+ .inbox-toolbar>.input-icon{width:100%;min-width:0}
+ .label-row{flex-wrap:wrap;gap:8px}
+ .topbar .brand{min-width:0;font-size:.9rem;gap:8px}
+ .topbar .site-logo{width:36px;height:36px;flex-shrink:0}
+ .topbar .icon-btn{flex-shrink:0}
+}
+@media(max-width:560px){
+ .auth-card,.auth-card.wide{padding:24px 4px 16px}
+ .auth-card .row{display:flex;flex-direction:column;gap:16px}
+ .auth-card .role-pick{gap:10px}
+ .auth-card .role-pick label{min-height:56px}
+ .app .main{padding:22px 12px calc(32px + env(safe-area-inset-bottom))}
+ .page-intro h1{font-size:1.55rem;line-height:1.5}
+ .panel{padding:18px 14px}
+ .search-row{flex-wrap:wrap;gap:10px}
+ .search-row>.input-icon,.search-row>.btn{flex:1 1 100%;width:100%}
+ .item{align-items:flex-start;gap:12px}
+ .item-body{flex:1 1 160px;min-width:0}
+ .item-actions{width:100%;margin:0;display:flex}
+ .item-actions .btn{flex:1 1 100px}
+ .stats,.inbox-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stat{min-width:0;padding:16px 12px}
+ .stat-value{font-size:1.8rem}
+ .modal-backdrop{padding:12px}
+ .modal{padding:22px 16px;border-radius:18px}
+ .modal-actions{display:flex;flex-wrap:wrap;gap:10px}
+ .modal-actions .btn{flex:1 1 100px}
+ .utility-page{padding:12px}.utility-page>main{margin:0 auto!important;padding:22px 16px!important}
+}
+
+.password-recovery-link{display:flex;justify-content:flex-end;width:100%;margin-top:0}
+.password-recovery-link a{display:inline-flex;align-items:center;min-height:44px}
+.signup-page #accountFields{row-gap:0}
+.signup-page #accountFields>.field+.field{margin-top:20px}
+.signup-page #accountFields>#submitBtn{margin-top:20px}
+
+.settings-panel{max-width:720px;margin-bottom:20px}.settings-panel .field{margin-bottom:20px}.settings-panel input,.settings-panel select{width:100%}.notification-setting-row{display:flex;align-items:center;justify-content:space-between;gap:16px}.notification-switch{flex:none;min-width:88px;min-height:44px;border:1px solid #607568;border-radius:24px;background:#eef1ea;color:#234738;padding:8px 16px;cursor:pointer;font:inherit}.notification-switch[aria-checked=true]{background:#205d49;color:white}.notification-switch:focus-visible{outline:3px solid #b8cf8a;outline-offset:3px}.notification-switch:disabled{opacity:.6;cursor:wait}

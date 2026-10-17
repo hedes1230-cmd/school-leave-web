@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta name="robots" content="noindex, follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>เข้าสู่ระบบด้วยรหัสบัญชี - ระบบลาเรียนออนไลน์</title>
+    <meta name="theme-color" content="#155e57">
+    <link rel="icon" type="image/svg+xml" href="assets/school-leave-logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/experience.css">
+    <script src="js/experience.js" defer></script>
+<link rel="stylesheet" href="css/polish.css">
+<script src="js/polish.js" defer></script>
+<link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/assets/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ลาเรียน"><link rel="stylesheet" href="/css/mobile.css"><script src="/js/mobile-app.js" defer></script><link rel="stylesheet" href="/css/account-layout.css"><link rel="stylesheet" href="/css/site-responsive.css"></head>
+<body class="auth-page signup-page">
+<a class="skip-link" href="#main-content">ข้ามไปเนื้อหาหลัก</a>
+<div id="connectionNotice" class="connection-notice" role="status" hidden>ออฟไลน์ — กรุณาเชื่อมต่ออินเทอร์เน็ต</div>
+<main class="auth-wrap" id="main-content" tabindex="-1">
+    <aside class="auth-story" aria-label="เกี่ยวกับระบบลาเรียน">
+        <a class="story-brand" href="index.html"><img class="site-logo" src="assets/school-leave-logo.svg" width="44" height="44" alt="" aria-hidden="true"> ระบบลาเรียนออนไลน์</a>
+        <div class="story-main">
+        <h2>ระบบลาเรียน<br>ออนไลน์<span class="accent-dot">.</span></h2><svg class="story-art" viewBox="0 0 480 300" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="247" cy="270" rx="171" ry="15" fill="#143c2e" opacity=".55"/>
+<circle cx="390" cy="83" r="45" fill="none" stroke="#aac386" opacity=".3"/>
+<path d="M51 173C15 142 34 113 60 131C39 98 64 76 81 111L101 216" fill="#749166"/><path d="M62 137L91 218" stroke="#c8d9a3" stroke-width="2"/>
+<g transform="rotate(7 225 158)"><rect x="108" y="45" width="250" height="203" rx="20" fill="#b9cd92"/><path d="M108 65Q108 45 128 45H338Q358 45 358 65V91H108Z" fill="#d5e2b3"/><path d="M144 34V60M320 34V60" stroke="#486642" stroke-width="9" stroke-linecap="round"/>
+<g fill="#f5f6e9"><rect x="132" y="111" width="36" height="28" rx="8"/><rect x="185" y="111" width="36" height="28" rx="8"/><rect x="238" y="111" width="36" height="28" rx="8"/><rect x="291" y="111" width="36" height="28" rx="8"/><rect x="132" y="154" width="36" height="28" rx="8"/><rect x="185" y="154" width="36" height="28" rx="8"/><rect x="238" y="154" width="36" height="28" rx="8"/><rect x="291" y="154" width="36" height="28" rx="8"/></g><rect x="185" y="154" width="36" height="28" rx="8" fill="#49754c"/><path d="M195 168L201 174L213 162" stroke="#fff9e8" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="paper-float"><rect x="260" y="143" width="147" height="105" rx="15" fill="#fcf8e9"/><rect x="279" y="165" width="58" height="6" rx="3" fill="#9cb082"/><rect x="279" y="180" width="91" height="5" rx="2.5" fill="#dbe0ca"/><rect x="279" y="193" width="73" height="5" rx="2.5" fill="#dbe0ca"/><circle cx="383" cy="230" r="29" fill="#edb28e"/><path d="M371 230L380 239L396 222" fill="none" stroke="#6b4b32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+<path d="M78 44L82 55L93 59L82 63L78 74L74 63L63 59L74 55Z" fill="#eac498"/><circle cx="429" cy="146" r="5" fill="#b4ca92"/>
+</svg>
+        
+        </div>
+        </aside>
+    <div class="auth-card wide">
+        <div class="auth-logo"><i class="fas fa-user-plus" aria-hidden="true"></i></div>
+        <h1>เข้าสู่ระบบ</h1>
+        
+
+        
+        <div id="signupMessage" class="notice notice-warn" role="alert" tabindex="-1" hidden></div>
+        <form id="signupForm" aria-label="เข้าสู่ระบบด้วยรหัสบัญชีและรหัสผ่าน" data-action="login" novalidate>
+<fieldset id="accountFields" disabled style="border:0;padding:0;margin:0;min-width:0">
+            <div class="field">
+                <label for="username">รหัสบัญชี</label>
+                <div class="input-icon"><i class="fas fa-user" aria-hidden="true"></i>
+                    <input type="text" id="username" name="username" placeholder="เช่น student_01" minlength="3" maxlength="24" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+                </div>
+                
+            </div>
+
+
+            <div class="field">
+                <label for="password">รหัสผ่าน</label>
+                <div class="input-icon pw">
+                    <i class="fas fa-lock" aria-hidden="true"></i>
+                    <input type="password" id="password" name="password" minlength="12" maxlength="128" placeholder="รหัสผ่าน" autocomplete="current-password" required>
+                    <button type="button" class="pw-toggle" aria-pressed="false" aria-label="แสดงรหัสผ่าน"><i class="fas fa-eye" aria-hidden="true"></i></button>
+                </div>
+                
+<div class="password-recovery-link"><a href="account-recovery.html">ลืมรหัสผ่าน</a></div>
+            </div>
+
+<div id="accountChallenge"></div>
+            <button type="submit" class="btn btn-primary btn-block" id="submitBtn"><i class="fas fa-paper-plane" aria-hidden="true"></i> เข้าสู่ระบบ</button>
+        </fieldset></form>
+<section id="recoveryPanel" class="notice" tabindex="-1" hidden>
+<h2>เก็บรหัสกู้คืน</h2><p>ใช้เมื่อจำรหัสผ่านไม่ได้ แต่ละรหัสใช้ได้ครั้งเดียว</p>
+<pre id="recoveryCodes" style="white-space:pre-wrap;user-select:all"></pre>
+<label><input type="checkbox" id="savedCodes"> ฉันเก็บรหัสไว้แล้ว</label>
+<button type="button" id="continueBtn" class="btn btn-primary btn-block" disabled>ดำเนินการต่อ</button>
+</section>
+
+        <div class="auth-divider"><span>หรือ</span></div>
+        <button type="button" class="btn btn-block btn-google" id="googleLoginBtn"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.36z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.62-2.41l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.6 0-4.81-1.76-5.6-4.12H3.05v2.59A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 13.92a6 6 0 0 1 0-3.84V7.49H3.05a10 10 0 0 0 0 9.02z"/><path fill="#EA4335" d="M12 5.96c1.47 0 2.79.51 3.82 1.51l2.86-2.86A9.6 9.6 0 0 0 12 2a10 10 0 0 0-8.95 5.49l3.35 2.59A5.99 5.99 0 0 1 12 5.96z"/></svg> เข้าสู่ระบบด้วย Google</button>
+        
+        <div id="googleMessage" class="notice notice-warn" role="status" hidden></div>
+
+        <div class="auth-links">
+            <span>ยังไม่มีบัญชี? <a href="signup.html">สร้างบัญชี</a></span>
+        </div>
+<p style="text-align:center;padding:16px;font-size:13px"><a href="privacy.html">ความเป็นส่วนตัว</a></p>
+    </div>
+</main>
+
+
+
+<script type="module" src="js/account-page.js"></script>
+<script type="module" src="js/google-login.js"></script>
+</body>
+</html>
+

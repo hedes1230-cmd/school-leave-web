@@ -1,0 +1,6 @@
+heic-to 1.6.5 by Hopper Gee (LGPL-3.0-or-later), libheif 1.23.5.
+Package source including original decoder, worker, and build scripts: ./heic-to-1.6.5-source.tgz
+Upstream: https://github.com/hoppergee/heic-to/tree/v1.6.5
+libheif corresponding source and build instructions: https://github.com/strukturag/libheif/tree/v1.23.5
+Local modification: extracted same-origin CSP worker; reject images above 40,000,000 pixels before ImageData allocation.
+No authentication or user data is sent to the decoder vendor. Users may replace this separable worker with a compatible implementation.

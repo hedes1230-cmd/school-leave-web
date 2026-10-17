@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta name="robots" content="noindex, follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>นักเรียน - ระบบลาเรียนออนไลน์</title>
+    <meta name="theme-color" content="#155e57">
+    <link rel="icon" type="image/svg+xml" href="assets/school-leave-logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/experience.css">
+    <script src="js/experience.js" defer></script>
+<link rel="stylesheet" href="css/polish.css">
+<script src="js/polish.js" defer></script>
+<link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/assets/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ลาเรียน"><link rel="stylesheet" href="/css/mobile.css"><script src="/js/mobile-app.js" defer></script><link rel="stylesheet" href="/css/site-responsive.css"><link rel="stylesheet" href="/css/chatbot.css"></head>
+<body class="app-page">
+<a class="skip-link" href="#main-content">ข้ามไปเนื้อหาหลัก</a>
+<div id="connectionNotice" class="connection-notice" role="status" hidden>ออฟไลน์ — กรุณาเชื่อมต่ออินเทอร์เน็ต</div>
+<div class="app">
+    <header class="topbar">
+        <button class="icon-btn" id="menuBtn" aria-controls="app-sidebar" aria-label="เปิดเมนูหลัก" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+        <div class="brand"><img class="site-logo" src="assets/school-leave-logo.svg" width="44" height="44" alt="" aria-hidden="true"> ระบบลาเรียน</div>
+        <span class="count" id="topCount" hidden>0</span>
+    </header>
+    <div class="sidebar-backdrop"></div>
+
+    <aside class="sidebar" id="app-sidebar">
+        <div class="brand"><img class="site-logo" src="assets/school-leave-logo.svg" width="44" height="44" alt="" aria-hidden="true"> ระบบลาเรียนออนไลน์</div>
+        <div class="profile">
+            <div id="profileAvatar"></div>
+            <div>
+                <span class="role-tag">นักเรียน</span>
+                <div class="profile-name" id="userNameDisplay">กำลังโหลด...</div>
+                <div class="profile-meta" id="userEmailDisplay"></div>
+            </div>
+        </div>
+        <nav class="nav" aria-label="เมนูหลัก">
+            <button class="nav-item" data-tab="teachers-tab"><i class="fas fa-users" aria-hidden="true"></i> ครูของฉัน <span class="count" id="reqCount" hidden>0</span></button>
+            <button class="nav-item" data-tab="leave-form-tab"><i class="fas fa-pen-to-square" aria-hidden="true"></i> เขียนใบลา</button>
+            <button class="nav-item active" aria-current="page" data-tab="history-tab"><i class="fas fa-clock-rotate-left" aria-hidden="true"></i> ประวัติการลา <span class="count" id="pendingCount" hidden style="background:var(--amber);color:#000">0</span></button>
+            <button class="nav-item" data-tab="settings-tab"><i class="fas fa-gear" aria-hidden="true"></i> ตั้งค่า</button>
+<button class="nav-item logout" id="logoutBtn"><i class="fas fa-right-from-bracket" aria-hidden="true"></i> ออกจากระบบ</button>
+        </nav>
+    </aside>
+
+    <main class="main" id="main-content" tabindex="-1">
+        <!-- ===== ครู ===== -->
+        <section id="teachers-tab" class="content-section">
+            <div class="page-intro"><div><h1>ครูของฉัน</h1></div></div>
+
+            <div class="panel">
+                <h3 class="panel-title"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> ค้นหาและเพิ่มครู</h3>
+                <form class="search-row" id="searchForm">
+                    <div class="input-icon">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="search" id="searchInput" aria-label="ค้นหาครูด้วยชื่อเต็มหรือรหัส" placeholder="ชื่อเต็มหรือรหัสครู" autocomplete="off">
+                    </div>
+                    <button class="btn btn-primary" id="searchBtn"><i class="fas fa-search" aria-hidden="true"></i> ค้นหา</button>
+                </form>
+                <div id="searchResults" class="list" style="margin-top:14px"></div>
+            </div>
+
+            <div id="requestSection" hidden>
+                <h3 class="panel-title" style="color:var(--green)"><i class="fas fa-bell" aria-hidden="true"></i> คำขอเชื่อมต่อจากครู</h3>
+                <div id="requestList" class="list" style="margin-bottom:22px"></div>
+            </div>
+
+            <h3 class="panel-title"><i class="fas fa-chalkboard-user" aria-hidden="true"></i> รายชื่อครู</h3>
+            <div id="teacherList" class="list"></div>
+        </section>
+
+        <!-- ===== เขียนใบลา ===== -->
+        <section id="leave-form-tab" class="content-section">
+            <div class="page-intro"><div><h1>เขียนใบลา</h1></div><button class="btn btn-ghost" data-goto="history-tab">ประวัติการลา</button></div>
+
+            <div id="noTeacherNotice" class="notice notice-warn" hidden>
+                <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> เพิ่มครูก่อนส่งใบลา
+                <br><button type="button" class="btn btn-ghost btn-sm" data-goto="teachers-tab"><i class="fas fa-user-plus" aria-hidden="true"></i> ไปหน้าเพิ่มครู</button>
+            </div>
+
+            <div class="leave-workspace"><form id="leaveForm" class="panel" novalidate>
+                <h2 class="form-section-title"><span>1</span> ผู้รับและประเภทการลา</h2>
+                <div class="field">
+                    <label for="targetTeacher">ส่งถึงครู</label>
+                    <select id="targetTeacher" required></select>
+                </div>
+                <div class="field">
+                    <span class="label">ประเภทการลา</span>
+                    <div class="chips" id="typeChips">
+                        <button type="button" class="chip active" aria-pressed="true" data-type="ลาป่วย"><i class="fas fa-kit-medical" aria-hidden="true"></i> ลาป่วย</button>
+                        <button type="button" class="chip" aria-pressed="false" data-type="ลากิจ"><i class="fas fa-briefcase" aria-hidden="true"></i> ลากิจ</button>
+                    </div>
+                </div>
+                <h2 class="form-section-title"><span>2</span> วันที่และเหตุผล</h2>
+                <div class="row">
+                    <div class="field">
+                        <label for="startDate">ตั้งแต่วันที่</label>
+                        <input type="date" id="startDate" required>
+                    </div>
+                    <div class="field">
+                        <label for="endDate">ถึงวันที่</label>
+                        <input type="date" id="endDate" required>
+                    </div>
+                </div>
+                <div id="daysInfo" class="days-pill" hidden></div>
+                <div class="field" style="margin-top:14px">
+                    <label for="reason">เหตุผลการลา</label>
+                    <textarea id="reason" rows="4" minlength="3" aria-describedby="reasonHelp" maxlength="500" placeholder="ระบุเหตุผล เช่น มีไข้สูง ไปพบแพทย์" required></textarea>
+                    <small class="hint" id="reasonHelp"><span class="char-count"><span id="reasonCount">0</span>/500</span></small>
+                </div>
+                <h2 class="form-section-title"><span>3</span> หลักฐานประกอบ <small>ไม่บังคับ</small></h2>
+                <div class="field">
+                    <span class="label"><i class="fas fa-camera" aria-hidden="true"></i> แนบรูปหลักฐาน <small class="faint">(ไม่บังคับ)</small></span>
+                    <div class="dropzone" id="dropArea">
+                        <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+                        <span>เลือกรูป</span><br>
+                        <small class="faint">JPG, PNG, HEIC และรูปทั่วไป · ไม่เกิน 10 MB</small>
+                        <input type="file" id="evidencePhoto" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/avif,image/x-icon,image/vnd.microsoft.icon,image/heic,image/heif,.jpg,.jpeg,.jfif,.png,.webp,.gif,.bmp,.avif,.ico,.heic,.heif" aria-describedby="imageStatus" aria-label="เลือกรูปหลักฐาน">
+                    </div>
+                    <small id="imageStatus" role="status" aria-live="polite"></small>
+                    <div class="preview" id="previewBox" hidden>
+                        <img id="previewImg" alt="ตัวอย่างรูปหลักฐาน">
+                        <button type="button" class="remove" id="removeImg" aria-label="ลบรูป"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+                        <div class="preview-info" id="previewInfo"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="saveBtn"><i class="fas fa-paper-plane" aria-hidden="true"></i> ตรวจสอบก่อนส่ง <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+            </form><aside class="leave-summary" aria-label="สรุปใบลา"><h2>สรุปใบลา</h2><dl><div><dt>ส่งถึง</dt><dd id="reviewTeacher">ยังไม่ได้เลือกครู</dd></div><div><dt>ประเภท</dt><dd id="reviewType">ลาป่วย</dd></div><div><dt>ช่วงวันที่</dt><dd id="reviewDates">ยังไม่ได้เลือกวันที่</dd></div><div><dt>จำนวนวันทำการ</dt><dd id="reviewDays">—</dd></div></dl></aside></div>
+        </section>
+
+        <!-- ===== ประวัติ ===== -->
+        <section id="history-tab" class="content-section active">
+            <div class="page-intro"><div><h1>การลาของฉัน</h1></div><button class="btn btn-primary" data-goto="leave-form-tab"><i class="fas fa-plus" aria-hidden="true"></i> เขียนใบลาใหม่</button></div>
+            <div class="onboarding-banner" id="startGuide" hidden><i class="fas fa-user-plus" aria-hidden="true"></i><div><strong>เพิ่มครู</strong></div><button class="btn btn-ghost" data-goto="teachers-tab">ค้นหาครู</button></div>
+            <div class="stats" id="statsBox"></div>
+            <div class="filters">
+                <div class="chips" id="statusChips">
+                    <button class="chip active" aria-pressed="true" data-status="all">ทั้งหมด</button>
+                    <button class="chip" aria-pressed="false" data-status="pending">รออนุมัติ</button>
+                    <button class="chip" aria-pressed="false" data-status="approved">อนุมัติแล้ว</button>
+                    <button class="chip" aria-pressed="false" data-status="rejected">ไม่อนุมัติ</button>
+                </div>
+            </div>
+            <div id="historyList" class="list"></div>
+        </section>
+    <section id="settings-tab" class="content-section">
+ <div class="page-intro"><h2>ตั้งค่า</h2></div>
+ <div class="panel settings-panel"><h3>ข้อมูลของฉัน</h3>
+ <form id="profileSettingsForm"><div class="field"><label for="settingsName">ชื่อ–นามสกุล</label><input id="settingsName" name="fullname" maxlength="120" autocomplete="name" required></div>
+ <div class="field" id="gradeField"><label for="settingsGrade">ระดับชั้น</label><select id="settingsGrade" name="grade"><option value="">ไม่ระบุ / อื่น ๆ</option><option>ม.1</option><option>ม.2</option><option>ม.3</option><option>ม.4</option><option>ม.5</option><option>ม.6</option></select></div>
+ <button class="btn btn-primary" type="submit">บันทึก</button><p id="profileSettingsStatus" role="status"></p></form></div>
+ <div class="panel settings-panel"><h3>การแจ้งเตือน</h3><div id="notificationSettings"></div></div></section><p style="text-align:center;padding:16px;font-size:13px"><a href="privacy.html">ความเป็นส่วนตัว</a></p></main>
+</div>
+
+<script type="module" src="js/student_leave_form.js"></script>
+<script type="module" src="/js/chatbot.js"></script></body>
+</html>

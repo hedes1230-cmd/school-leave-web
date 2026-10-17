@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "include": [
+    "/__/auth/*",
+    "/__/firebase/init.json",
+    "/api/push/*",
+    "/api/account",
+    "/api/account/*",
+    "/api/chat",
+    "/api/admin/*"
+  ],
+  "exclude": []
+}

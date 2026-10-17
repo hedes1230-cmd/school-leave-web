@@ -1,0 +1,37 @@
+/* Mobile shell shared by every public page and both authenticated dashboards. */
+.service-summary{margin-top:20px;padding-top:14px;border-top:1px solid #d6dfd4;font-size:.875rem;line-height:1.7;color:#35564e}
+.service-summary summary{cursor:pointer;padding:10px 0;min-height:44px}
+.service-summary summary:focus-visible{outline:3px solid #709652;outline-offset:3px;border-radius:4px}
+.service-summary ul{margin:8px 0 0;padding-inline-start:22px}
+html{scroll-padding-top:85px;-webkit-text-size-adjust:100%}
+img,svg{max-width:100%}.main,.auth-card,.panel,.item-body,.profile>div,.filters>*{min-width:0}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+.install-app{margin:12px auto;display:block}.install-app[hidden],#installApp[hidden]{display:none}
+.table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.table-wrap:focus-visible{outline:3px solid #709652;outline-offset:3px}
+.modal{max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain}
+@media(max-width:900px){
+ body.menu-open{overflow:hidden}
+ .topbar{padding-top:calc(10px + env(safe-area-inset-top));padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+ .sidebar{width:min(290px,calc(100vw - 40px));height:100dvh;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);overflow-y:auto;overscroll-behavior:contain}
+ .main{padding-bottom:calc(32px + env(safe-area-inset-bottom))}
+ .auth-wrap{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+ input,select,textarea{font-size:16px!important;scroll-margin-block:100px}
+ .btn,.icon-btn,.pw-toggle,.chip,.nav-item{min-height:48px}
+ .page-intro,.leave-head,.leave-foot,.inbox-toolbar{flex-wrap:wrap;gap:12px}
+ .leave-title,.leave-meta,.leave-reason,.teacher-note,.item-title{overflow-wrap:anywhere}
+ .name-suggestions{max-height:min(280px,45dvh)}
+ .modal-backdrop{padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+}
+@media(max-width:560px){
+ .auth-story{padding:18px 20px}.auth-story .story-main{padding:16px 0 0}.story-main h2{font-size:1.5rem}.story-art{width:110px!important;bottom:-30px!important}
+ .auth-card,.auth-card.wide{padding:24px 12px}.auth-card h1{margin-bottom:22px}
+ .page-intro>.btn{width:100%}.panel{padding:18px 14px}.item-actions{gap:8px}.item-actions .btn{flex:1}
+ .filters{gap:10px}.filters .input-icon,.filters select{flex:1 1 100%;width:100%}
+ .inbox-toolbar .input-icon{width:100%}.inbox-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.inbox-stats .stat:last-child{grid-column:1/-1}
+ .leave-workspace .row{display:flex;flex-direction:column;gap:16px}.leave-workspace .row>.field{width:100%;flex:auto}
+ .chips{flex-wrap:wrap;gap:8px}.modal-actions{flex-wrap:wrap}.modal-actions .btn{flex:1;min-width:100px}
+ .notice{overflow-wrap:anywhere}.notice .btn{margin-top:8px}.toast{max-width:calc(100vw - 24px)}
+ .table-wrap table{min-width:650px}.utility-page{padding:12px}.utility-page>main{padding:22px 16px!important}
+}
+@media(max-height:500px) and (orientation:landscape){.auth-story .story-main{display:none}.auth-story{min-height:0;padding:12px 20px}.auth-card{padding-top:20px}.modal{max-height:calc(100dvh - 16px)}}

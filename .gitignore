@@ -1,0 +1,10 @@
+.env*
+!.env.example
+node_modules/
+private*/
+*.pem
+*.key
+*service-account*.json
+*.log
+release.zip
+

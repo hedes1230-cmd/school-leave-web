@@ -1,0 +1,9 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>ผู้ดูแลระบบ — ระบบลาเรียนออนไลน์</title><link rel="stylesheet" href="css/admin.css"></head><body>
+<header><a href="/">ระบบลาเรียนออนไลน์</a><span>ผู้ดูแลระบบ</span><button id="logout" hidden>ออกจากระบบ</button></header>
+<main><h1>จัดการระบบ</h1><p id="message" role="status">กำลังตรวจสอบสิทธิ์…</p><a id="login" href="/account-login" hidden>เข้าสู่ระบบด้วย Google</a>
+<section id="workspace" hidden><nav aria-label="ส่วนจัดการ"><button id="usersTab" aria-pressed="true">ผู้ใช้</button><button id="leavesTab" aria-pressed="false">ใบลา</button><button id="reload">โหลดใหม่</button></nav>
+<p>ผู้ดูแลแก้ชื่อและชั้นเรียนได้ และพิจารณาใบลาที่ยังรออนุมัติ การเปลี่ยนแปลงมีบันทึกตรวจสอบ</p>
+<label for="search">ค้นหาในรายการที่โหลดแล้ว</label><input id="search" type="search" placeholder="ชื่อ รหัสบัญชี หรือรหัสรายการ"><div id="list"></div><button id="more" hidden>โหลดเพิ่ม</button></section>
+<dialog id="editor"><form id="editForm"><h2 id="editTitle"></h2><p id="targetName"></p><div id="profileFields"><label for="fullname">ชื่อ–นามสกุล</label><input id="fullname" maxlength="120"><label for="grade">ระดับชั้น</label><select id="grade"><option value="">ไม่ระบุ</option><option>ม.1</option><option>ม.2</option><option>ม.3</option><option>ม.4</option><option>ม.5</option><option>ม.6</option></select></div>
+<div id="decisionFields"><label for="note">หมายเหตุหรือเหตุผลที่ไม่อนุมัติ</label><textarea id="note" maxlength="500" rows="3"></textarea></div><p id="editMessage" role="alert"></p><div class="actions"><button id="cancel" type="button">ยกเลิก</button><button id="save" type="submit">ยืนยันบันทึก</button></div></form></dialog>
+</main><script type="module" src="js/admin.js"></script></body></html>
